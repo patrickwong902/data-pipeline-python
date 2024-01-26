@@ -2,7 +2,7 @@ from abc import ABC
 from data_pipeline.base_classes.data_structures.sink import SinkConfig
 
 
-class LocalStrategyBase(ABC):
+class LocalSinkBase(ABC):
     def __init__(self, dataframe, sink_config: SinkConfig):
         super().__init__()
         self.mode = sink_config.mode
