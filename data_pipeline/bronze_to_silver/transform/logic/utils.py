@@ -11,18 +11,19 @@ strategy_map = {
         "local": SinkLocalStrategy
     }
 }
-strategy = config["strategy"]
+strategy = config["bronze->silver"]["strategy"]
 
 
 def load_data(spark, source_config, path, file_format, schema):
     source_strategy = strategy_map["source"][strategy["source"]](source_config=source_config)
-    return source_strategy.read(spark=spark, path=path, file_format=file_format, schema=schema)
+    source_strategy.read(spark=spark, path=path, file_format=file_format, schema=schema)
+    return source_strategy.get_dataframe
 
 
 def get_schema(table_name):
-    return GenerateSourceSchema(table_name=table_name)
+    return GenerateSourceSchema(table_name=table_name).generate_schema()
 
 
-def write_data(path, sink_config, file_format):
-    sink_strategy = strategy_map["sink"][strategy["sink"]](sink_config=sink_config)
+def write_data(path, sink_config, file_format, dataframe):
+    sink_strategy = strategy_map["sink"][strategy["sink"]](dataframe=dataframe, sink_config=sink_config)
     return sink_strategy.write(path=path, file_format=file_format)

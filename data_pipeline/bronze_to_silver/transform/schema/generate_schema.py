@@ -10,7 +10,5 @@ class GenerateSourceSchema:
     def generate_schema(self):
         struct_fields = []
         for column in self.table:
-            struct_fields.append(StructField(column, schema_dictionary[column], True))
+            struct_fields.append(StructField(column, schema_dictionary[self.table[column]], True))
         return StructType(struct_fields)
-
-

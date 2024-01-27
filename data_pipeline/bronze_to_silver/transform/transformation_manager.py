@@ -1,22 +1,26 @@
 from data_pipeline.base_classes.data_structures.source import SourceConfig
 from data_pipeline.base_classes.data_structures.sink import SinkConfig
-from data_pipeline.bronze_to_silver.transform.logic.utils import get_schema
+from data_pipeline.bronze_to_silver.transform.logic.logic import LogicNBA
 
 
-class BronzeToSilver:
+class TransformationManager:
     def __init__(self, source_container_name, sink_container_name, storage_account):
-        clean_nba_source_config = SourceConfig(
+        source_config = SourceConfig(
             storage_account=storage_account,
             container_name=source_container_name
         )
-        clean_nba_sink_config = SinkConfig(
+        sink_config = SinkConfig(
             storage_account=storage_account,
             container_name=sink_container_name,
             mode="overwrite"
         )
 
-    def process_nba(self):
-        get_schema("NBA_Regular_Season")
+        self.logic_nba_object = LogicNBA(source_config, sink_config, table_name="NBA_Regular_Season")
+
+    def process_nba(self, spark):
+        self.logic_nba_object.load_data(spark, path="NBA_Regular_Season/2002-03 NBA - Sheet1.csv", file_format="csv")
+        print(self.logic_nba_object.schema)
+        self.logic_nba_object.write_data(path="NBA_Regular_Season")
 
 
 
