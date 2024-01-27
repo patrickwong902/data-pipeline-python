@@ -17,11 +17,10 @@ class LocalSourceBase(ABC):
             path
         ])
 
-    def read(self, spark, path, file_format):
+    def read(self, spark, path, file_format, schema=None):
         print("Reading from (local) Data Lake started")
         self.create_full_path(path)
         print(f"Reading from {self.full_path}")
-        self.dataframe = spark.read.format(file_format).load(self.full_path)
+        self.dataframe = spark.read.format(file_format).load(self.full_path, schema=schema)
         print(f"Reading from (local) Data Lake is done")
-
 
