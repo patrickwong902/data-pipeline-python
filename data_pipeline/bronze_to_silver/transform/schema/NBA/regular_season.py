@@ -1,0 +1,33 @@
+from pyspark.sql.types import *
+
+schema_nba = StructType([
+    StructField("Player", StringType(), False),
+    StructField("Pos", StringType(), False),
+    StructField("Age", IntegerType(), False),
+    StructField("Tm,", StringType(), False),
+    StructField("G", IntegerType(), False),
+    StructField("GS", IntegerType(), False),
+    StructField("MP", DoubleType(), False),
+    StructField("FG", IntegerType(), False),
+    StructField("FGA", DoubleType(), False),
+    StructField("FG%", DoubleType(), False),
+    StructField("3P", DoubleType(), False),
+    StructField("3PA", DoubleType(), False),
+    StructField("3P%", DoubleType(), False),
+    StructField("2P", DoubleType(), False),
+    StructField("2PA", DoubleType(), False),
+    StructField("2P%", DoubleType(), False),
+    StructField("eFP%", DoubleType(), False),
+    StructField("FT", DoubleType(), False),
+    StructField("FTA", DoubleType(), False),
+    StructField("FT%", DoubleType(), False),
+    StructField("ORB", DoubleType(), False),
+    StructField("DRB", DoubleType(), False),
+    StructField("TRB", DoubleType(), False),
+    StructField("AST", DoubleType(), False),
+    StructField("STL", DoubleType(), False),
+    StructField("BLK", DoubleType(), False),
+    StructField("TOV", DoubleType(), False),
+    StructField("PF", DoubleType(), False),
+    StructField("PTS", DoubleType(), False)
+])
