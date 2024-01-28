@@ -13,3 +13,7 @@ class Transformation:
         self.dataframe = self.dataframe.groupBy(*group_by_columns) \
             .agg(sum(key).alias(key_alias))
         return self.dataframe
+
+    def joining_nba(self, dataframe_nba):
+        self.dataframe = dataframe_nba.join(self.dataframe, on="Tm", how="right")
+        return self.dataframe
