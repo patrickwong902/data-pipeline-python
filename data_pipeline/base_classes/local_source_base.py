@@ -32,4 +32,3 @@ class LocalSourceBase(ABC):
     @property
     def get_dataframe(self):
         return self.dataframe
-
