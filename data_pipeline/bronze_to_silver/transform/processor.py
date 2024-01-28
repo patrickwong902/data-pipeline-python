@@ -1,4 +1,4 @@
-from data_pipeline.bronze_to_silver.transform.logic.logic import LogicNBA
+from data_pipeline.bronze_to_silver.transform.logic.logic_tables.logic_nba import LogicNBA
 
 
 class Processor:

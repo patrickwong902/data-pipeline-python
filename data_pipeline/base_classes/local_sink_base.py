@@ -1,10 +1,8 @@
-from abc import ABC
 from data_pipeline.base_classes.data_structures.sink import SinkConfig
 
 
-class LocalSinkBase(ABC):
+class LocalSinkBase:
     def __init__(self, dataframe, sink_config: SinkConfig):
-        super().__init__()
         self.mode = sink_config.mode
         self.storage_account = sink_config.storage_account
         self.container_name = sink_config.container_name

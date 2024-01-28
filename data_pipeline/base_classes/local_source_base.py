@@ -1,10 +1,8 @@
-from abc import ABC
 from data_pipeline.base_classes.data_structures.source import SourceConfig
 
 
-class LocalSourceBase(ABC):
+class LocalSourceBase:
     def __init__(self, source_config: SourceConfig):
-        super().__init__()
         self.storage_account = source_config.storage_account
         self.container_name = source_config.container_name
         self.dataframe = None
