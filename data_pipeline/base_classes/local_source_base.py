@@ -28,7 +28,4 @@ class LocalSourceBase(ABC):
         else:
             self.dataframe = spark.read.format(file_format).load(path=self.full_path, schema=schema)
         print(f"Reading from (local) Data Lake is done")
-
-    @property
-    def get_dataframe(self):
         return self.dataframe
