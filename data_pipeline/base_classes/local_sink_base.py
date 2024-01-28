@@ -20,7 +20,6 @@ class LocalSinkBase:
         print("Writing to (local) Data Lake started")
         self.create_full_path(path)
         print(f"Writing to {self.full_path}")
-        self.dataframe.write.format(file_format).option("overWriteSchema", "true").mode(self.mode).save(
-            path=self.full_path
-        )
+        self.dataframe.write.format(file_format).option(
+            "overWriteSchema", "true").mode(self.mode).save(path=self.full_path)
         print("Writing to (local) Data Lake is done!")

@@ -21,6 +21,6 @@ def bronze_to_silver(storage_account, source_storage_name, sink_storage_name, sp
         dataframe = load_data(spark=spark, source_config=source_config,
                               path=f"{file_name}/{formatted_date}.csv",
                               file_format="csv", schema=schema)
-        dataframe_cleaned = Processor(dataframe=dataframe).process_nba()
+        dataframe_cleaned = Processor(dataframe=dataframe, file_name=file_name).processor()
         write_data(sink_config=sink_config, file_format="delta", dataframe=dataframe_cleaned, path=file_name)
 

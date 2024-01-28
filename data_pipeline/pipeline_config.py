@@ -8,7 +8,8 @@ except KeyError:
 
 config = {"bronze->silver": {
     "files": [
-        "NBA_Regular_Season"
+        "NBA_Regular_Season",
+        "NBA_Playoff"
     ],
     "strategy": {
         "source": strategy,
