@@ -16,16 +16,11 @@ strategy = config["bronze->silver"]["strategy"]
 
 def load_data(spark, source_config, path, file_format, schema):
     source_strategy = strategy_map["source"][strategy["source"]](source_config=source_config)
-    source_strategy.read(spark=spark, path=path, file_format=file_format, schema=schema)
-    return source_strategy.get_dataframe
+    return source_strategy.read(spark=spark, path=path, file_format=file_format, schema=schema)
 
 
 def get_schema(table_name):
     return GenerateSourceSchema(table_name=table_name).generate_schema()
-
-
-def rename_column(dataframe, column_name_old, column_name_new):
-    return dataframe.withColumnRenamed(column_name_old, column_name_new)
 
 
 def write_data(path, sink_config, file_format, dataframe):
