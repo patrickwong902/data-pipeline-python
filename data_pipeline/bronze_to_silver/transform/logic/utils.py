@@ -24,6 +24,10 @@ def get_schema(table_name):
     return GenerateSourceSchema(table_name=table_name).generate_schema()
 
 
+def rename_column(dataframe, column_name_old, column_name_new):
+    return dataframe.withColumnRenamed(column_name_old, column_name_new)
+
+
 def write_data(path, sink_config, file_format, dataframe):
     sink_strategy = strategy_map["sink"][strategy["sink"]](dataframe=dataframe, sink_config=sink_config)
     return sink_strategy.write(path=path, file_format=file_format)

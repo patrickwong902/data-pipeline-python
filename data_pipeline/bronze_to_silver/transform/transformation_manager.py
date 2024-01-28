@@ -19,7 +19,7 @@ class TransformationManager:
 
     def process_nba(self, spark):
         self.logic_nba_object.load_data(spark, path="NBA_Regular_Season/2002-03 NBA - Sheet1.csv", file_format="csv")
-        print(self.logic_nba_object.schema)
+        self.logic_nba_object.rename_columns()
         self.logic_nba_object.write_data(path="NBA_Regular_Season")
 
 
